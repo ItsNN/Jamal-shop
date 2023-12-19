@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_filters %}
+{% load humanize %}
+{% load static %}
+ <title>{% block title %} Contact Us|DNA {% endblock %}</title>
+    {% block extrahead %}
+         <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    {% endblock extrahead %}
+{% block content %}
+<div class="container">
+  <div class="col-md-12">
+
+      <div class="row my-4" id="pheading">
+          <a href="{% url 'menu_list' %}" id="back"><i class="bi bi-arrow-left-short"></i></a>
+          <p class="mt-2"><a id="ahome" href="#">Summary</a> / <b>Checkout</b> </p>
+      </div>
+  </div>
+</div>
+<form action="{% url 'order_create' %}" method="post">
+    {% csrf_token %}
+        <div class="row px-5 checkout">
+            <br>
+            <div class="col-md-8 checkout_form">
+                {{ form | crispy }}
+             <br>
+            <button type="submit" class="btn mt-4 checkout-cta">PLACE ORDER</button>
+            </div>
+            <div class="col-md-4">
+                <div class="summary">
+                    <div class="summary-total-items"><span class="total-items"></span>Order Summary</div>
+                    <div class="summary-subtotal">
+                      <div class="subtotal-title">Item
+                      </div>
+                      <div class="subtotal-value final-value" id="basket-subtotal">{{ cart.get_total_price | intcomma }}</div>
+                    </div>
+            
+                    <div class="summary-total mt-2">
+                      <div class="total-title">Total</div>
+                      <div class="total-value final-value" id="basket-total"> {{ cart.get_total_price | intcomma }} </div>
+                    </div>
+                    <div class="summary-checkout">
+                      <a class="btn checkout-cta mt-2">Continue Shopping</a>
+                    </div>
+                  </div>
+            </div>
+        </div>
+       
+    </form>
+
+{% endblock content %}

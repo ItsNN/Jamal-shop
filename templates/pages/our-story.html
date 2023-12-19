@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Jamal SHOP | Our Story</title>
+{% endblock title %}
+{% block extrahead %}
+   <link rel="stylesheet" href="{% static 'css/our.css' %}">
+{% endblock extrahead %}
+{% block content %}
+<section class="story">
+    <h1>Our Story</h1>
+    <div class="row story1">
+        <div class="col-md-6">
+            <p data-aos="fade-right" data-aos-duration="1500" data-aos-easing="linear">From the heart of our vast
+                desert and within the depths of our rich Saudi heritage, camels have
+                always symbolized pride and livelihood. They are more than just a mode of transportation, serving as
+                a token of hospitality, a source of health benefits, and a boost for immunity against illnesses. It
+                is only natural, therefore, to return to our roots and embrace camel milk once more, a staple from
+                our ancestors' times, noted for its plethora of health benefits and myriad nutrients. This prompted
+                us to question: is camel milk merely an aspect of our cultural heritage?</p>
+            <p data-aos="fade-right" data-aos-duration="3000" data-aos-easing="linear">Could it possibly be a
+                significant dietary staple on Saudi tables today? From this point, we drew
+                inspiration from the "Jamal" concept to disseminate the culture of camel milk and market its varied
+                high-quality products. Just as our forebears utilized "Jamal" for water, today we employ it to
+                provide fresh, natural camel milk products, free from added phosphates or cane sugar, within the
+                Kingdom of Saudi Arabia and across global markets.</p>
+        </div>
+        <div class="col-md-6">
+            <img class="img-fluid vert-move" src="{% static 'images/sign.png' %}" alt="" width="450" height="450">
+        </div>
+    </div>
+    <div class="row story2 justify-content-evenly">
+        <div class="col-md-3 story3 store mt-5" data-aos="fade-right" data-aos-duration="1500" data-aos-easing="linear">
+            <h3>Our Mission</h3>
+            <p>Offer “Saudi-made” innovative camel dairy products coupled with an outstanding consumer experience
+                and enabled by state-of-the-art operations and facilities.</p>
+        </div>
+        <div class="col-md-5 story3">
+            <h3>Environmental responsibility</h3>
+            <p>Jamal is committed to elevating the environmental, social, and governance (ESG) standards in the
+                Kingdom, aligning with the United Nations' Sustainable Development Goals in every facet of its
+                business operations. Jamal strives to elevate the camel milk industry within the Kingdom by adopting
+                the principles of quality and sustainability while fostering innovation to produce products that
+                provide value to consumers. Moreover, it reinforces the Kingdom's endeavor to diversify income
+                sources, adhering to Saudi Arabia’s Vision 2030 objectives and its ambition for a diversified and
+                sustainable national economy.</p>
+        </div>
+        <div class="col-md-3 story3 store mt-5" data-aos="fade-left" data-aos-duration="1500" data-aos-easing="linear">
+            <h3>Our Vision</h3>
+            <p>To be the world’s leading camel dairy brand known for its unwavering commitment to promote Saudi
+                heritage and sustainability across the value chain.</p>
+        </div>
+    </div>
+    <div class="row story4 mt-5 ">
+        <h1 class="pb-3">Team Members</h1>
+        <div class="col-md-3" data-aos="fade-right" data-aos-duration="1500" data-aos-easing="linear">
+            <div class="team">
+                <img class="img-fluid" src="{% static 'images/Picture4.png' %}" alt="">
+                <h5>Nouf Alrumeih</h5> 
+                    <p>Chief Executive Officer</p>
+            </div>
+        </div>
+        <div class="col-md-3" data-aos="fade-right" data-aos-duration="1500" data-aos-easing="linear">
+            <div class="team">
+                <img class="img-fluid" src="{% static 'images/Picture3.png' %}" alt="">
+                <h5>Sara Alkhoder </h5>
+                   <p> Chief Supply Chain and Procurement Officer </p>
+            </div>
+        </div>
+        <div class="col-md-3" data-aos="fade-right" data-aos-duration="1500" data-aos-easing="linear">
+            <div class="team">
+                <img class="img-fluid" src="{% static 'images/Picture2.png' %}" alt="">
+                <h5>Nouf Almusnd </h5>
+                    <p>Chief Camel lDivision Officer </p>
+            </div>
+        </div>
+        <div class="col-md-3" data-aos="fade-right" data-aos-duration="1500" data-aos-easing="linear">
+            <div class="team">
+                <img class="img-fluid" src="{% static 'images/Picture1.png' %}" alt="">
+                <h5>Njood Almahfouz </h5>
+                   <p> Chief Operations Officer </p>
+            </div>
+        </div>        
+    </div>
+</section>
+{% endblock content %}

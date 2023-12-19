@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}
+  <title>Jamal Coffee Shop | SignUp</title>
+{% endblock title %}
+{% block extrahead %}
+{#   <link rel="stylesheet" href="{% static 'css/login.css' %}">#}
+{% endblock extrahead %}
+{% block content %}
+    <div class="row login">
+        <div class="col-md-3"></div>
+
+        <div class="col-6 login2">
+
+            <div class="wrapper">
+                <form action="#">
+                    <h1>CREATE YOUR ACCOUNT</h1>
+                    <div class="user_details">
+                           <form id="form-col" action="{% url 'signup' %}" method="post">
+                                {% csrf_token %}
+                                {{ form | crispy }}
+
+                            <div class="button">
+                                <button class="btn btn-dark" type="submit" > Sign Up </button>
+                            </div>
+                           </form>
+
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{#        <div class="col-6 login1">#}
+{#            <img class="img-fluid" src="{% static 'images/signup.jpg' %}" alt="">#}
+{#        </div>#}
+
+
+
+{% endblock content %}

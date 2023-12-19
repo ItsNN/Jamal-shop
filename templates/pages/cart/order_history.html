@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Jamal Cafe Coffee| SHOP</title>
+{% endblock title %}
+{% block extrahead %}
+   <link rel="stylesheet" href="{% static 'css/menu.css' %}">
+    <style>
+    /* Example CSS styles - Customize as needed */
+
+.product-details {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.product-image img {
+  width: 50px; /* Adjust image size */
+  height: auto;
+  margin-right: 10px;
+}
+
+.product-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+    </style>
+{% endblock extrahead %}
+{% block content %}
+    <!-- order_history.html -->
+<h1>Order History</h1>
+{% if orders %}
+  <div class="order-history">
+    {% for order in orders %}
+      <div class="order-panel">
+        <div class="order-details">
+          <h2>Order ID: {{ order.id }}</h2>
+          <p>Order Date: {{ order.created }}</p>
+          <p>Total Amount: {{ order.get_total_cost }}</p>
+          <!-- Add other order details you want to display -->
+        </div>
+        <div class="order-items">
+          <h3>Order Items:</h3>
+          <ul>
+            {% for item in order.items.all %}
+              <li class="order-item">
+                <div class="product-details">
+                  <div class="product-image">
+                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                  </div>
+                  <div class="product-info">
+                    <p class="product-name">{{ item.product.name }}</p>
+                    <p>Quantity: {{ item.quantity }}</p>
+                    <p>Price: {{ item.price }}</p>
+                    <!-- Add other item details if needed -->
+                  </div>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p>No orders found.</p>
+{% endif %}
+{% endblock content %}

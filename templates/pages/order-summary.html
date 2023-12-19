@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+ <title>{% block title %} Jamal Cafe | Your Order  {% endblock %}</title>
+    {% block extrahead %}
+         <link rel="stylesheet" href="{% static 'css/order.css' %}">
+
+    {% endblock extrahead %}
+{% block content %}
+    <div class="container">
+        <div class="col-md-12">
+    
+            <div class="row mt-5" id="pheading">
+                <a href="{% url 'menu_list' %}" id="back"><i class="bi bi-arrow-left-short"></i></a>
+                <p class="mt-2"><a id="ahome" href="{% url 'menu_list' %}">home</a> /  <b>Summary</b> </p>
+            </div>
+        </div>
+    </div>
+
+    <main style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+      {% if orders %}
+          {% for order in orders %}
+           <div class="basket">
+
+          <div class="order-module">
+            <img id="order-img" src="{%static 'images/order.png' %}" alt="">
+            <h5><span>Order ID:</span> {{ order.id }}</h5>
+            <h5><span>Order Date:</span> {{ order.created }}</h5>
+            <h5><span>Total Amount:</span> {{ order.get_total_cost }}</h5>
+            <h4>Thank you for your order!</h4>
+          </div>
+          <div class="basket-labels">
+          </div>
+          {% for item in order.items.all %}
+          <div class="basket-product">
+            <div class="item">
+              <div class="product-image">
+                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="product-frame">
+              </div>
+              <div class="product-details">
+                <h5>{{ item.product.name }}</h5>
+              </div>
+            </div>
+            <div class="price">{{ item.price }}</div>
+            <div class="quantity">
+              <p style="float: right;">{{ item.quantity }}</p>
+            </div>
+            <div class="subtotal">{{ item.price }}</div>
+
+          </div>
+           {% endfor %}
+
+
+
+        </div>
+          {% endfor %}
+    {% else %}
+           <p>No orders found.</p>
+        {% endif %}
+      </main>
+
+{% endblock content %}

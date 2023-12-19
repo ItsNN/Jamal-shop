@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+ <title>{% block title %} Jamal Cafe |Cart  {% endblock %}</title>
+    {% block extrahead %}
+         <link rel="stylesheet" href="{% static 'css/reserve.css' %}">
+    {% endblock extrahead %}
+{% block content %}
+    <div class="row login justify-content-center" data-aos="fade-right" data-aos-duration="1500" data-aos-easing="linear">
+        <div class="col-10 login2">
+            <div class="wrapper">
+                <h3>CHECKOUT</h3>
+                <p>Please Checkout and Pay us, before you run away.</p>
+                <hr>
+                <form class="row g-3">
+                    <div class="col-md-6">
+                      <label for="validationDefault01" class="form-label">Full name</label>
+                      <input type="text" class="form-control" id="validationDefault01" value="Junaid Iqbal" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="validationDefault02" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="validationDefault02" value="example@gmail.com" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="validationDefault03" class="form-label">Phone no.</label>
+                        <input type="number" class="form-control" id="validationDefault03" value="Otto" required>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="validationDefault04" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="validationDefault04" required>
+                      </div>
+                    <div class="col-md-6">
+                      <label for="validationDefault05" class="form-label">City</label>
+                      <input type="text" class="form-control" id="validationDefault05" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="validationDefault06" class="form-label">Zip Code</label>
+                      <input type="number" class="form-control" id="validationDefault06" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="validationDefault07" class="form-label">Name on Card</label>
+                        <input type="number" class="form-control" id="validationDefault07" required>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="validationDefault08" class="form-label">Credit Card no.</label>
+                        <input type="number" class="form-control" id="validationDefault08" required>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="validationDefault09" class="form-label">Exp Month</label>
+                        <input type="number" class="form-control" id="validationDefault09" required>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="validationDefault10" class="form-label">Exp Year</label>
+                        <input type="number" class="form-control" id="validationDefault10" required>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="validationDefault11" class="form-label">CVV</label>
+                        <input type="number" class="form-control" id="validationDefault11" required>
+                      </div>
+                      <div class="col-md-12">
+                        <label for="exampleFormControlTextarea1" class="form-label">Additional Instructions</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                      </div>
+                    <div class="col-12">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                        <label class="form-check-label" for="invalidCheck2">
+                          Agree to terms and conditions
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <button class="btn btn-primary" type="submit">Checkout</button>
+                    </div>
+                  </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

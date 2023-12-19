@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+ <title>{% block title %} Jamal Cafe |Cart  {% endblock %}</title>
+    {% block extrahead %}
+         <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    {% endblock extrahead %}
+{% block content %}
+
+<div class="container">
+    <div class="col-md-12">
+
+        <div class="row mt-5" id="pheading">
+            <a href="{% url 'menu_list' %}" id="back"><i class="bi bi-arrow-left-short"></i></a>
+            <p class="mt-2">Home  /  <b>Cart</b> </p>
+        </div>
+    </div>
+</div>
+
+<main>
+
+    <div class="basket">
+      <div class="basket-module">
+        <h3>My Cart</h3>
+      </div>
+      <div class="basket-labels">
+        <ul>
+          <li class="item item-heading">Item</li>
+          <li class="price">Price</li>
+          <li class="quantity">Quantity</li>
+          <li class="subtotal">Subtotal</li>
+        </ul>
+      </div>
+     {% for item in cart %}
+        {% with product=item.product %}
+      <div class="basket-product">
+        <div class="item">
+          <div class="product-image">
+            <img src="{{ product.image.url }}" alt="Placholder Image 2" class="product-frame">
+          </div>
+          <div class="product-details">
+            <h4>{{ product.name }}</h4>
+          </div>
+        </div>
+{#        <div class="price">{{ product.price | intcomma }}</div>#}
+        <div class="price">{% if product.discounted_price %}
+            {{  product.discounted_price | intcomma  }} {% else %} {{ product.price | intcomma }} {% endif %}</div>
+        <div class="quantity">
+            {{ item.quantity }}
+{#          <input type="number" value="4" min="1" class="quantity-field">#}
+        </div>
+        <div class="subtotal">{{ item.total_price }}</div>
+        <div class="remove">
+            <form action="{% url "cart_remove" product.id %}" method="post">
+                <button type="submit" value="Remove"><i class="bi bi-x-circle"></i></button>
+                {% csrf_token %}
+              </form>
+
+          <button><i class="bi bi-pencil"></i></button>
+        </div>
+      </div>
+       {% endwith %}
+      {% endfor %}
+
+    </div>
+    <aside>
+      <div class="summary">
+        <div class="summary-total-items"><span class="total-items"></span>Order Summary</div>
+        <div class="summary-subtotal">
+          <div class="subtotal-title">Item
+          </div>
+          <div class="subtotal-value final-value" id="basket-subtotal">{{ cart.get_total_price  }}</div>
+        </div>
+
+        <div class="summary-total mt-2">
+          <div class="total-title">Total</div>
+          <div class="total-value final-value" id="basket-total"> {{ cart.get_total_price }} </div>
+        </div>
+        <div class="summary-checkout">
+          <a href="{% url 'order_create' %}" class="btn checkout-cta">GO TO CHECKOUT</a>
+          <a href="{% url 'menu_list' %}" class="btn checkout-cta mt-2">Continue Shopping</a>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+{% endblock content %}

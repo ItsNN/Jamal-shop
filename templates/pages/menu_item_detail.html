@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load social_share %}
+{% load static %}
+
+{% block title %}
+  <title>Jamal Cafe Coffee| Details</title>
+{% endblock title %}
+{% block extrahead %}
+   <link rel="stylesheet" href="{% static 'css/cartDetail.css' %}">
+        <link rel="stylesheet" href="{% static 'css/star_rating.css' %}">
+    <style>
+  .tweet-this  a {
+    display: inline-block;
+    text-indent: -9999px;
+    overflow: hidden;
+    width: 20px;
+    height: 20px;
+
+}
+  .facebook-this  a {
+    display: inline-block;
+    text-indent: -9999px;
+    overflow: hidden;
+    width: 20px;
+    height: 20px;
+
+}
+    </style>
+{% endblock extrahead %}
+{% block content %}
+    <div class="container">
+        <div class="container-fluid">
+            <div class="col-md-12">
+    
+                <div class="row mt-5" id="pheading">
+    
+                    <a href="{% url 'menu_list' %}" id="back"><i class="bi bi-arrow-left-short"></i></a>
+                    <p>Home / <span>Product Detail</span> </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <img id="category-img" class="img-fluid"
+                        src="{{ product.image.url }}"
+                        alt="">
+    
+                </div>
+                <div class="col-md-4 mt-3">
+                    <h6 class="mt-2">{{  product.name }}</h6>
+                    <p> {% if product.discounted_price %}
+                        £{{ product.discounted_price }}  <del>£{{ product.price }}</del>
+                    {% else %}
+                        £{{ product.price }}
+                    {% endif %}
+                    </p>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-5">
+                             <form action="{% url 'cart_add' product.id %}" method="post">
+                                <div class="wrapper">
+                                    {{ cart_product_form }}
+                                </div>
+                              {% csrf_token %}
+                            <button class="nav-link mt-3" id="btn2" type="submit" > Add to Cart </button>
+                        </form>
+                        </div>
+
+                    </div>
+                    <p class="mt-3"><b>Description</b></p>
+                    <p>{{ product.description }}</p>
+                    <p><b>Share Product</b></p>
+                    <div class="row cdicon inline-group">
+                        <div class="col-md-1">
+                               <i class=" bi bi-twitter-x social-icon">
+                                   {% post_to_twitter "Menu Item: {{product.name}}. Check it out!" object_or_url %} </i>
+                                </div>
+                        
+                                <div class="col-md-1">
+                             <i class=" bi bi-facebook social-icon">
+                                 {% post_to_facebook  "Menu Item: {{product.name}}. Check it out!" object_or_url%} </i>
+</div>
+                </div>
+            </div>
+        </div>
+        {% if request.user.is_authenticated %}
+        <div id="comment">
+            <form method="post" action="{% url 'menu_item_detail' slug=product.slug %}">
+                 {% csrf_token %}
+
+                 <fieldset class="starability-basic mb-4">
+                                           <legend>Rate this product</legend>
+                                           <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+                                           <input type="radio" id="first-rate1" name="rating" value="1" />
+                                           <label for="first-rate1" title="Terrible">1 star</label>
+                                           <input type="radio" id="first-rate2" name="rating" value="2" />
+                                           <label for="first-rate2" title="Not good">2 stars</label>
+                                           <input type="radio" id="first-rate3" name="rating" value="3" />
+                                           <label for="first-rate3" title="Average">3 stars</label>
+                                           <input type="radio" id="first-rate4" name="rating" value="4" />
+                                           <label for="first-rate4" title="Very good">4 stars</label>
+                                           <input type="radio" id="first-rate5" name="rating" value="5" />
+                                           <label for="first-rate5" title="Amazing">5 stars</label>
+                </fieldset>
+
+                 {{ comment_form.body | as_crispy_field }}
+                 <button class="btn" type="submit">Post Comment</button>
+             </form>
+         </div>
+         {% else %}
+          {% endif %}
+        <!-- Update the comments section in your template -->
+<div id="comment-section">
+    <p>Customer Reviews</p>
+    <div class="comment-list">
+        {% if comments %}
+            {% for comment in comments %}
+                <div class="comment">
+                    <p>{{ comment.body }}</p>
+                    <p class="comment-info">Posted by {{ comment.user }} on {{ comment.created }}</p>
+
+                </div>
+                 <div class="action d-flex justify-content-between mt-2 align-items-center">
+                                            <div class="icons align-items-center">
+                                                 <fieldset class="starability-result mx-auto" data-rating="{{comment.rating}}">
+                                                     Rated: {{comment.rating}} stars </fieldset>
+                                            </div>
+                                        </div>
+            {% empty %}
+                <p>No comments yet.</p>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <!-- Add a form to allow users to add new comments -->
+    <!-- Your form HTML and submission logic -->
+</div>
+
+    <hr class="">
+        <h5 class="">Recommendations</h5>
+        <div class="row coffee" data-aos="fade-right" data-aos-duration="1500" data-aos-easing="linear">
+            {% for recommended_product in recommended_products %}
+            <div class="col-md-3 coffee1">
+                <div class="product-card">
+
+                    <div class="product-tumb">
+                        <a href="{{ recommended_product.get_absolute_url }}">
+                            <img src="{{ recommended_product.image.url }}" alt="recommended-product-image"></a>
+                    </div>
+                    <div class="product-details">
+                        
+                        <h5><a href="{{ recommended_product.get_absolute_url }}">{{ recommended_product.name }}</a></h5>
+                        
+                        <div class="product-bottom-details">
+                             <div class="product-price">
+                                    {% if recommended_product.discounted_price %} <small>£{{ recommended_product.price }}</small>£{{ recommended_product.price }}
+                                    {% else %}
+                                        £{{ recommended_product.price }}
+                                    {% endif %}
+
+                                </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+         {% endfor %}
+    </div>
+    </div>
+
+
+
+{% endblock content %}
+{% block extrascript %}
+     <script>
+        const plus = document.querySelector(".plus"),
+            minus = document.querySelector(".minus"),
+            num = document.querySelector(".num");
+        let a = 1;
+        plus.addEventListener("click", () => {
+            a++;
+            a = (a < 10) ? "0" + a : a;
+            num.innerText = a;
+        });
+
+        minus.addEventListener("click", () => {
+            if (a > 1) {
+                a--;
+                a = (a < 10) ? "0" + a : a;
+                num.innerText = a;
+            }
+        });
+    </script>
+{% endblock extrascript %}

@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600&family=Ephesis&display=swap');
+.navbar{
+  background-color: #6B3E28;
+  font-family: 'Comfortaa', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+.navbar a{
+  color: #e4bc84;
+}
+.navbar .nav-item a{
+  color: #B47A63;
+}
+.navbar .nav-item a:hover{
+  color: #e4bc84;
+}
+.navbar-brand{
+  font-family: 'Ephesis', cursive;
+  font-weight: 600;
+  color: #e4bc84;
+}
+.navbar-brand:hover{
+  color: #e4bc84!important;
+}
+.navbar form .form-control{
+  border-radius: 50px;
+}
+.navbar form .btn{
+  background-color: #e4bc84;
+  border-radius: 50px;
+}
+#icons{
+  font-size: 1.2rem;
+  color: #e4bc84;
+}
+#icons a:hover{
+  color: #B47A63;
+}
+#buttons a{
+  font-size: 14px;
+  text-decoration: none;
+}
+#buttons a:hover{
+  color: #B47A63;
+}
+#buttons .sign{
+  background-color: #e4bc84;
+  color: #6B3E28;
+  padding: 10px;
+  border-radius: 50px;
+}
+.menu ul {
+  all: unset;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  background: #6B3E28;
+}
+.menu ul li {
+  position: relative;
+}
+.menu ul li a {
+  display: block;
+  padding: 8px;
+}
+
+/* Style the submenus */
+.menu ul li ul {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+}
+
+.menu ul ul li {
+  width: max-content;
+  min-width: 100%;
+  max-width: 200px;
+}
+
+.menu ul a {
+  all: unset;
+  color: #B47A63;
+  cursor: pointer;
+}
+.menu ul a:hover {
+  color: #e4bc84;
+}
+
+.menu ul li:hover > ul {
+  display: flex; /* Show submenus on hover */
+}
+
+/* Style the third-level submenu */
+.menu ul ul ul {
+  top: 0;
+  left: 100%;
+}
+#orderlog{
+  list-style: none;
+}
+#orderlog a{
+  text-decoration: none;
+}

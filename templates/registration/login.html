@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}
+  <title>Jamal SHOP | LOGIN</title>
+{% endblock title %}
+{% block extrahead %}
+  <link rel="stylesheet" href="{% static 'css/log-sign.css' %}">
+
+{% endblock extrahead %}
+{% block content %}
+
+<div class="row login">
+    <div class="col-6 login1 log">
+        <img class="img-fluid vert-move" src="{% static 'images/login.png' %}" alt="">
+    </div>
+
+    <div class="col-6 login2 pt-5" data-aos="fade-left" data-aos-duration="1500" data-aos-easing="linear">
+        <div class="wrapper">
+            <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                <br>
+                <br>
+
+                <h1>Welcome Back!</h1>
+                <h3 class="text-center mt-4">Login in to your account</h3>
+                {{ form |crispy }}
+                <button type="submit" class="btn btn-dark">Login</button>
+
+                <div class="register-link">
+                    <p>Don't have an account?<a  href="{% url 'signup' %}"> Register</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
